@@ -14,6 +14,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
+//ㄷㄹ니ㅓㅣㄴ더리날
+
+
 
 /// =======================
 ///  플랫폼 채널: 정확알람 / 타임존
@@ -1145,7 +1148,6 @@ class MemoReminder {
     await _exact.invokeMethod('openExactAlarmSettings');
   }
 
-  //dkfekfjsdlkfjelswf
   /// noteId: 각 메모의 고유 ID(문자열). 같은 ID로 예약하면 취소 시 함께 관리 가능.
   /// whenEpochMs: UTC 기준이든 로컬이든 상관없이 "그 시각의 epoch ms"로만 주면 됨.
   static Future<void> scheduleAt({
