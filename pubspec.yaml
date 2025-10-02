@@ -1,0 +1,68 @@
+name: memo_cat_project
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.2
+  shared_preferences: ^2.2.3
+  speech_to_text: ^7.3.0
+  audioplayers: ^6.1.0
+  google_mobile_ads: ^5.0.0   # 최신 안정버전 사용
+
+  # ✅ 알림 + 타임존
+  flutter_local_notifications: ^17.2.3
+  timezone: ^0.9.4
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+  flutter_launcher_icons: ^0.13.1
+
+# ----- 앱 아이콘 자동 생성 설정 -----
+flutter_launcher_icons:
+  android: true
+  ios: true
+  # 필요하면 웹/데스크톱도 켜기
+  # web: true
+  # macos: true
+  # windows: true
+
+  # 아이콘 원본(정사각형 1024x1024 PNG 권장)
+  image_path: assets/icons/app_icon.png
+
+  # iOS는 투명 PNG를 싫어해서 권장 설정
+  remove_alpha_ios: true
+
+  # (선택) 안드로이드 적응형 아이콘을 따로 쓰고 싶으면 아래 주석 해제
+  # adaptive_icon_background: "#BFA8FF"        # 또는 이미지 경로
+  # adaptive_icon_foreground: assets/app_icon.png
+  # adaptive_icon_monochrome: assets/app_icon_monochrome.png
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/logo/cat_silhouette.png
+    - assets/sounds/meow.mp3
+    - assets/sounds/swish.mp3
+    - assets/icons/화살표.png
+    # 아이콘 원본을 앱에서도 쓸 수 있게 하고 싶으면 남겨두고,
+    # 단순히 아이콘 생성용이면 생략해도 무방
+    - assets/icons/app_icon.png
+
+  fonts:
+    - family: Pretendard
+      fonts:
+        - asset: assets/fonts/Pretendard-Medium.ttf
+          weight: 500

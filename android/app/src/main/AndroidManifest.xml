@@ -1,0 +1,95 @@
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- [필수/광고/네트워크] -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- [음성 입력/네가 쓰던 권한 복구] -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- [포그라운드 서비스] -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Android 14+ 에서 타입별 권한 필요 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+
+    <!-- [잠금 유지/부팅 후 재시작/알림] -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Android 13+ 알림 권한 (풀스크린/포그라운드 알림 표시용) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="memo_cat_project">
+
+        <!-- ✅ 실제 AdMob App ID(물결 ~ 포함) -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3557532273437213~9259653435" />
+
+        <!-- Flutter 메인 -->
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:exported="true"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:windowSoftInputMode="adjustResize"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true">
+
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- ✅ 포그라운드 서비스 등록(클래스 경로 주의) -->
+        <service
+            android:name=".ScreenWatchService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- 알람 수신 리시버: 외부에 노출하지 않음 -->
+        <receiver
+            android:name=".ReminderReceiver"
+            android:exported="false" />
+
+        <!-- ✅ 부팅 후 자동 재시작 리시버 -->
+        <receiver
+            android:name=".WakeReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+    </application>
+
+    <!-- (네 앱이 쓰던 쿼리 유지) -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT" />
+            <data android:mimeType="text/plain" />
+        </intent>
+    </queries>
+
+</manifest>
+
+
+
+
